@@ -9,7 +9,7 @@ cd /home/tkess/scratch/CharrGDL_WG
 ### 1. TRIM EVERYTHING
 ls HI.*R1.fastq.gz | \
   sed 's/R1.fastq.gz//'| \
-  parallel -j 20 'cutadapt \
+  parallel -j 4 'cutadapt \
     -u 15 \
     --minimum-length 40 \
     -q 10 \
