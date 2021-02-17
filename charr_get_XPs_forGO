@@ -1,0 +1,7 @@
+#get all XPs in 500bp window around WG FST/PCA outliers
+bedtools window -a Charr_chrom_only.gff -b Charr_WGOL_FST_and_PCA_OL99.bed -w 500  | grep -e "gene" | cut -f9 | grep  XP >WGOL_FST_PC_gff_pull   
+grep -o "=XP.*;" WGOL_FST_PC_gff_pull  | sed 's/\;.*//' | sed 's/\=//' | sort | uniq  > All_uniq_XP_WGOL
+
+#get all XPs for genes distinct to each morph with evidence of putative CNVs
+bedtools window -a Charr_chrom_only.gff -b cnvnator_filtered_distinct_genes_NC.bed -w 1  | grep -e "gene" | cut -f9 | grep  XP  > cnvnator_filtered_distinct_FST_PC_gff_pull   
+grep -o "=XP.*;" cnvnator_filtered_distinct_FST_PC_gff_pull  | sed 's/\;.*//' | sed 's/\=//' | sort | uniq  > cnvnator_filtered_distinct_XP_uniq
