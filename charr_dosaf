@@ -1,0 +1,46 @@
+cd /home/tkess/scratch/CharrGDL_WG
+module load htslib
+module load samtools
+
+#this is with 2pops - PALE
+/home/tkess/angsd/angsd \
+  -anc /home/tkess/scratch/CharrGDL_WG/Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fasta \
+  -bam PALEbams.txt \
+  -out PALE \
+  -dosaf 1 \
+  -GL 1 \
+  -doCounts 1 \
+  -nThreads 20 \
+  -minMapQ 30 \
+  -minQ 20 \
+  -minInd 10 \
+  -doMajorMinor 5 \
+  -doMaf 2 \
+  -setMinDepth 10 \
+  -uniqueOnly 1 \
+  -remove_bads 1 \
+  -only_proper_pairs 1 \
+  -maxDepth 400 \
+  -rf charr_chroms.txt
+
+#this is with 2pops - DARK
+/home/tkess/angsd/angsd \
+  -anc /home/tkess/scratch/CharrGDL_WG/Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fasta \
+  -bam DARKbams.txt \
+  -out DARK \
+  -dosaf 1 \
+  -GL 1 \
+  -doCounts 1 \
+  -nThreads 20 \
+  -minMapQ 30 \
+  -minQ 20 \
+  -minInd 10 \
+  -doMajorMinor 5 \
+  -doMaf 2 \
+  -setMinDepth 10 \
+  -uniqueOnly 1 \
+  -remove_bads 1 \
+  -only_proper_pairs 1 \
+  -maxDepth 400 \
+  -rf charr_chroms.txt
+
