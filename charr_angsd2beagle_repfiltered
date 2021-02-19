@@ -1,0 +1,28 @@
+## Load software modules
+module load angsd
+
+cd /home/tkess/scratch/CharrGDL_WG
+
+angsd -GL 1 \
+  -nThreads 20 \
+  -doGlf 2 \
+  -minMapQ 30 \
+  -minQ 20 \
+  -minInd 10 \
+  -out Charr_paledark_realign_norep_maf05 \
+  -doMajorMinor 1 \
+  -doMaf 2 \
+  -SNP_pval 2e-6 \
+  -doCounts 1 \
+  -dumpCounts 2 \
+  -doQsDist 1 \
+  -setMinDepth 20 \
+  -uniqueOnly 1 \
+  -remove_bads 1 \
+  -only_proper_pairs 1 \
+  -maxDepth 800 \
+  -bam Realignedbams.txt \
+  -rf charr_chroms.txt \
+  -sites pcangsd_sites_norep_CM.tsv \
+  -minMaf 0.05
+
