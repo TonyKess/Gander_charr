@@ -1,0 +1,27 @@
+
+## Load software modules
+module load angsd
+
+cd /home/tkess/scratch/CharrGDL_WG
+
+angsd -GL 1 \
+  -nThreads 20 \
+  -doGlf 2 \
+  -minMapQ 30 \
+  -minQ 20 \
+  -minInd 10 \
+  -out Charr_genolike_mq30_mindep20ind10_beagy \
+  -doMajorMinor 1 \
+  -doMaf 2 \
+  -SNP_pval 2e-6 \
+  -doCounts 1 \
+  -dumpCounts 2 \
+  -doQsDist 1 \
+  -setMinDepth 20 \
+  -uniqueOnly 1 \
+  -remove_bads 1 \
+  -only_proper_pairs 1 \
+  -maxDepth 800 \
+  -bam Realignedbams.txt \
+
+
