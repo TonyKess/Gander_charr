@@ -1,0 +1,14 @@
+## Load python and launch virtual environment
+module load python
+source ~/python_env/bin/activate
+cd /home/tkess/pcangsd
+
+python pcangsd.py \
+  -beagle /home/tkess/scratch/CharrGDL_WG/Charr_paledark_realign_norep_maf05.beagle.gz \
+  -selection \
+  -threads 20 \
+  -admix \
+  -o PC_charr_mq30_norepmaf05 \
+  -sites_save
+
+deactivate
