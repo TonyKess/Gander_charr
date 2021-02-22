@@ -1,0 +1,33 @@
+## Load software modules
+module load gatk/3.7
+module load picard
+
+#make sequence dictionary
+cd /home/tkess/scratch/CharrGDL_WG/Charr_Genome
+java -jar $EBROOTPICARD/picard.jar CreateSequenceDictionary R=GCA_002910315.2_ASM291031v2_genomic.fasta O=GCA_002910315.2_ASM291031v2_genomic.dict
+
+
+#make intervals
+cd /home/tkess/scratch/CharrGDL_WG
+
+ls *.sorted_dedup.bam | \
+  sed 's/.sorted_dedup.bam$//' | \
+  parallel --jobs 20 \
+  'java -Xmx6g -jar $EBROOTGATK/GenomeAnalysisTK.jar \
+  -T RealignerTargetCreator \
+  -R /home/tkess/scratch/CharrGDL_WG/Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fasta \
+  -I {}.sorted_dedup.bam \
+  -o {}.intervals'
+
+#indel realign
+ls *.sorted_dedup.bam | \
+  sed 's/.sorted_dedup.bam$//' | \
+  parallel --jobs 20 \
+ 'java -jar $EBROOTGATK/GenomeAnalysisTK.jar \
+ -T IndelRealigner \
+ -R /home/tkess/scratch/CharrGDL_WG/Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fasta \
+ -I {}.sorted_dedup.bam  \
+ -targetIntervals {}.intervals \
+ -o {}.realigned.bam'
+
+
