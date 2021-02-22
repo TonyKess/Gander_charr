@@ -1,0 +1,3 @@
+java -ea -Xmx80g -jar popoolation2-code/mpileup2sync.jar \
+  --input scratch/CharrGDL_WG/pale_dark.mpileup --output scratch/CharrGDL_WG/pale_dark_java.sync \
+  --fastq-type sanger --min-qual 20 --threads 8
