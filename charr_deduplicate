@@ -1,0 +1,12 @@
+## Load software modules
+module load picard/2.20.6
+
+
+cd /home/tkess/scratch/CharrGDL_WG
+## Remove duplicate reads
+ls *.sorted.bam | sed 's/.sorted.bam$//' | \
+  parallel 'java -Xmx3700m -jar $EBROOTPICARD/picard.jar \
+  MarkDuplicates I={}.sorted.bam \
+  O={}.deDup.bam \
+  M={}_deDupMetrics.txt REMOVE_DUPLICATES=true'
+
