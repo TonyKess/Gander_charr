@@ -1,0 +1,21 @@
+## Load software modules
+module load samtools
+module load bwa
+
+#index genome
+#bwa index Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fna.gz
+
+#change directory and align all reads
+cd /home/tkess/scratch/CharrGDL_WG
+
+for f1 in *R1_trim.fastq.gz;
+  do outfile=${f1%%_R1_trim.fastq.gz}"" ;
+  echo $outfile\.bam ;
+  bwa mem \
+  -t 32 \
+  -R "@RG\tID:{}\tSM:{}\tLB:Charr" \
+  /home/tkess/Charr_Genome/GCA_002910315.2_ASM291031v2_genomic.fna.gz \
+  $outfile\_R1_trim.fastq.gz  $outfile\_R2_trim.fastq.gz\
+  | samtools sort -o $outfile\.sorted.bam -T $outfile -@ 32 -m 3G ;
+  done
+
