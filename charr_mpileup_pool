@@ -1,0 +1,10 @@
+#ensure you are in your home directory - this script assumes starting in /home/user
+
+module load samtools
+module load bcftools
+cd /home/tkess/scratch/CharrGDL_WG
+
+samtools mpileup -B charrpool_dark_RG.realigned.bam charrpool_pale_RG.realigned.bam > pale_dark.mpileup
+
+
+
