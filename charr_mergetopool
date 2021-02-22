@@ -1,0 +1,33 @@
+## Load software modules
+module load samtools
+
+cd /home/tkess/scratch/CharrGDL_WG
+
+samtools merge charrpool_dark.realigned.bam *D_realigned.bam -f
+samtools merge charrpool_pale.realigned.bam *P_realigned.bam -f
+
+
+module load picard
+cd /home/tkess/scratch/CharrGDL_WG
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups \
+  INPUT=charrpool_dark.realigned.bam \
+  OUTPUT=charrpool_dark_RG.realigned.bam \
+  RGID=H01.1 \
+  RGLB= library1 \
+  RGPL=illumina \
+  RGPU= H01CHARR.1 \
+  RGSM=DARKMORPH \
+
+java -jar $EBROOTPICARD/picard.jar AddOrReplaceReadGroups \
+  INPUT=charrpool_pale.realigned.bam \
+  OUTPUT=charrpool_pale_RG.realigned.bam \
+  RGID=H01.1 \
+  RGLB= library1 \
+  RGPL=illumina \
+  RGPU= H01CHARR.1 \
+  RGSM=PALEMORPH \
+
+
+
+
+
