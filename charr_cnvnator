@@ -1,0 +1,98 @@
+module load nixpkgs/16.09
+module load gcc/8.3.0
+module load cnvnator/0.4.1
+
+cd /home/tkess/scratch/CharrGDL_WG
+
+cnvnator -root dark.root -chrom CM009399.1 \
+CM009410.1 \
+CM009420.1 \
+CM009429.1 \
+CM009430.1 \
+CM009431.1 \
+CM009432.1 \
+CM009433.1 \
+CM009434.1 \
+CM009435.1 \
+CM009436.1 \
+CM009437.1 \
+CM009400.1 \
+CM009401.1 \
+CM009402.1 \
+CM009403.1 \
+CM009404.1 \
+CM009405.1 \
+CM009406.1 \
+CM009407.1 \
+CM009408.1 \
+CM009409.1 \
+CM009411.1 \
+CM009412.1 \
+CM009413.1 \
+CM009414.1 \
+CM009415.1 \
+CM009416.1 \
+CM009417.1 \
+CM009418.1 \
+CM009419.1 \
+CM009421.1 \
+CM009422.1 \
+CM009423.1 \
+CM009424.1 \
+CM009425.1 \
+CM009426.1 \
+CM009427.1 \
+CM009428.1 -tree charrpool_dark_RG.realigned.bam
+
+
+cnvnator -root pale.root -chrom CM009399.1 \
+CM009410.1 \
+CM009420.1 \
+CM009429.1 \
+CM009430.1 \
+CM009431.1 \
+CM009432.1 \
+CM009433.1 \
+CM009434.1 \
+CM009435.1 \
+CM009436.1 \
+CM009437.1 \
+CM009400.1 \
+CM009401.1 \
+CM009402.1 \
+CM009403.1 \
+CM009404.1 \
+CM009405.1 \
+CM009406.1 \
+CM009407.1 \
+CM009408.1 \
+CM009409.1 \
+CM009411.1 \
+CM009412.1 \
+CM009413.1 \
+CM009414.1 \
+CM009415.1 \
+CM009416.1 \
+CM009417.1 \
+CM009418.1 \
+CM009419.1 \
+CM009421.1 \
+CM009422.1 \
+CM009423.1 \
+CM009424.1 \
+CM009425.1 \
+CM009426.1 \
+CM009427.1 \
+CM009428.1 -tree charrpool_pale_RG.realigned.bam
+
+# Calculate statistics
+cnvnator -root dark.root -stat 1000
+cnvnator -root pale.root -stat 1000
+
+# Partition
+cnvnator -root dark.root -partition 1000
+cnvnator -root pale.root -partition 1000
+
+# Call CNVs
+cnvnator -root dark.root -call 1000 > dark_cnvnator.tsv
+cnvnator -root pale.root -call 1000 > pale_cnvnator.tsv
