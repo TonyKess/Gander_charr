@@ -145,9 +145,9 @@ GDL_pale_GDL_dark_CNV_OL <- read.delim("~/Desktop/Tony/Charr/RDA_and_VST_OL.txt"
 colnames(GDL_pale_GDL_dark_CNV_OL)[3] <- "BP"
 
 GDL_VST <- read.delim("~/Desktop/Tony/GDL_dark_rn_GDL_pale_rn.Vst.txt", header=FALSE, stringsAsFactors=FALSE)
-colnames(GDL_VST) <- c("SNP", "LG_stupid", "BP", "C", "VST")
+colnames(GDL_VST) <- c("SNP", "LG_alt", "BP", "C", "VST")
 CHar_LG_Chrom_Conversion_VST <- read.table("~/Desktop/Tony/Charr/CHar_LG_Chrom_Conversion_VST.txt", quote="\"", comment.char="", stringsAsFactors=FALSE)
-colnames(CHar_LG_Chrom_Conversion_VST) <- c("LG", "LG_stupid", "CM_Chrom", "NC_Chrom")
+colnames(CHar_LG_Chrom_Conversion_VST) <- c("LG", "LG_alt", "CM_Chrom", "NC_Chrom")
 GDL_VST <- inner_join(GDL_VST, CHar_LG_Chrom_Conversion_VST)
 GDL_VST_OL <- inner_join(GDL_pale_GDL_dark_CNV_OL, GDL_VST)
 
