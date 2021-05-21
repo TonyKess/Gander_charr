@@ -184,7 +184,7 @@ PCMAP <- as.data.frame(cbind(MAPPOS, PVALS))
 library(qvalue)
 qval <- qvalue(PCs$pvalues)$qvalues
 alpha <- 0.05
-outliers <- which(qval<alpha)
+outliers <- which(qval<alpha) 
 Outliers_CHARR <- PCMAP[outliers,]
 write.table(Outliers_CHARR, "PCAdapt_CHARR_ALL_POLY_Outliers_K5_Q05.txt", sep = "\t", quote = FALSE, col.names = TRUE, row.names = FALSE)
 class(Outliers_CHARR$PVALS)
