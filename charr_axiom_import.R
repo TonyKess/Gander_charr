@@ -143,7 +143,7 @@ colnames(PolyHigh_M) <- "SNP"
 PolyHigh_M$SNP <- as.character(PolyHigh_M$SNP)
 
 #Sarah's potential PSV list
-S_SNPstats <- read.delim(" ", header = F, stringsAsFactors = F)
+S_SNPstats <- read.delim("Salisbury_PSV_list.txt", header = F, stringsAsFactors = F)
 
 #SNPs that pass both quality checks
 Good_SNPS <- data.frame(PolyHigh_M$SNP[PolyHigh_M$SNP %!in% S_SNPstats$V1])
