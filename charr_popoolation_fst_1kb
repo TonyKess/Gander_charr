@@ -1,9 +1,9 @@
 perl popoolation2-code/fst-sliding.pl --input scratch/CharrGDL_WG/pale_dark_CM.sync \
-  --output scratch/CharrGDL_WG/paledark_100.fst \
+  --output scratch/CharrGDL_WG/paledark.fst \
   --min-count 2 \
   --min-coverage 4 \
   --max-coverage 1000 \
   --pool-size 10 \
-  --window-size 100 \
+  --window-size 1000 \
   --step-size 100 \
   --suppress-noninformative
