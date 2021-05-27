@@ -5,5 +5,5 @@ perl popoolation2-code/fst-sliding.pl --input scratch/CharrGDL_WG/pale_dark_CM.s
   --max-coverage 1000 \
   --pool-size 10 \
   --window-size 1000 \
-  --step-size 100 \
+  --step-size 1000 \
   --suppress-noninformative
