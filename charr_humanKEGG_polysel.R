@@ -1,7 +1,7 @@
 setwd("~/Desktop/Software/polysel/")
 # set project variables
-project.name<-"charr_mander"
-data.path<-file.path("./data/charmander/")
+project.name<-"charr_human"
+data.path<-file.path("./data/charr_human/")
 
 code.path<-"./R"
 empfdr.path<-"./empfdr"
