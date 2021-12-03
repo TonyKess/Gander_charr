@@ -3,15 +3,15 @@ library(data.table)
 library(tidyverse)
 setwd("~/Desktop/Charr_Reanalysis/")
 #turns into Obj_Info - genes in human that will be merged with positions genotyped
-MAN_genes <- read.delim("~/Desktop/Charr_Reanalysis/Human_genes.txt")
-MAN_genes <- MAN_genes[MAN_genes$tax_id %in% "9606",]
+HUMAN_genes <- read.delim("~/Desktop/Charr_Reanalysis/Human_genes.txt")
+HUMAN_genes <- HUMAN_genes[HUMAN_genes$tax_id %in% "9606",] # change silly naming
 charr_genome_annotation <- read.csv("~/Desktop/Charr_Reanalysis/charr_genome_annotation.csv")
 CHar_LG_Chrom_Conversion <- read.delim("~/Desktop/Charr_Final_Scripts_Data/CHar_LG_Chrom_Conversion.txt", stringsAsFactors=FALSE, header = F)
 colnames(charr_genome_annotation)[11] <- "LG"
 colnames(CHar_LG_Chrom_Conversion) <- c("LG", "CM_Chrom", "NC_Chrom")
 charr_genome_annotation <- inner_join(charr_genome_annotation, CHar_LG_Chrom_Conversion,)
 charr_genome_annotation$Symbol <- toupper(charr_genome_annotation$Symbol)
-charr_human_conserved <- inner_join(charr_genome_annotation, MAN_genes, by = c("Symbol","description"))
+charr_human_conserved <- inner_join(charr_genome_annotation, HUMAN_genes, by = c("Symbol","description"))
 ##random checks of these on orthodb match too
 
 write.table(cbind(charr_human_conserved$CM_Chrom, charr_human_conserved$start_position_on_the_genomic_accession.x, charr_human_conserved$end_position_on_the_genomic_accession.x, charr_human_conserved$Symbol),
